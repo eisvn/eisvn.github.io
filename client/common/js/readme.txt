@@ -1,0 +1,1 @@
+This directory contain javascripts that share to all
