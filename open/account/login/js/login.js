@@ -34,6 +34,6 @@ function callAjax() {
             document.getElementById('imgProgress').style.visibility = 'hidden';
         }
     };
-    xmlhttp.open("POST", "http://eisvn.github.io/index.html", true);
+    xmlhttp.open("POST", "index.html", true);
     xmlhttp.send();
 }
