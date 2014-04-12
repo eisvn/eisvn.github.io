@@ -4,7 +4,7 @@ section {
 
 body {
     line-height: 1;
-    background-image: url('bg.jpg');
+    background-image: url('../img/bg.jpg');
     font: 13px/20px 'Lucida Grande', Tahoma, Verdana, sans-serif;
     color: #404040;
 }
