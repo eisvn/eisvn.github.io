@@ -1,4 +1,25 @@
-﻿$(function() {
+﻿//global variable for js
+var gAlertStartT= 200; //time fade in
+var gAlertCloseT = 400; //time fade out
+var gAlertDelayT = 10000; //time before auto close
+var UNABLE_ACCESS = 'Không thể tải trang'; //lỗi khi load html bằng ajax
+var UNABLE_SETCONTENT = 'Không thể nạp trang';
+
+var myApp;
+myApp = myApp || (function () {
+	var pleaseWaitDiv = $('#pleaseWaitDialog');
+	return {
+		showPleaseWait: function () {
+			pleaseWaitDiv.modal();
+		},
+		hidePleaseWait: function () {
+			pleaseWaitDiv.modal('hide');
+		},
+
+	};
+})();
+
+$(function() {
 
     $('#side-menu').metisMenu();
 
@@ -39,7 +60,7 @@ $(document).ready(function () {
             backdrop: 'static',
             keyboard: false
         });
-        loadModal(0, '../inventory/AddInv.html');
+        loadModal(0, '../inventory/advance/add-inv.html');
     }); //end button click event
 
     $('#btnBangTinh').click(function () {
@@ -65,9 +86,10 @@ function loadModal(width, htmlPath) {
             hideWating();
             $('#customModal').modal('show');
         },
-        error: function () {
+        error: function (a) {
             hideWating();
             displayAnAlert('alert-danger', 0, UNABLE_ACCESS); //ko thể truy cập máy chủ
+            alert(a.responseText);
         }
     }); //end call ajax
 }
