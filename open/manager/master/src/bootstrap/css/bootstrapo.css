@@ -1,0 +1,27 @@
+@import "bootstrap.min.css";
+
+/*header cua moi trang con*/
+.page-header {
+  margin: 20px 0 20px;
+}
+
+.alert {
+    padding: 3px;
+    padding-left: 7px;
+    margin-bottom: 3px;
+}
+
+.alert-dismissable .close {
+  top: 0px;
+  right: 0px;
+}
+
+/*giam muc do dark cua man hinh nen khi popup*/ 
+.modal-backdrop.in {
+  opacity: .03; 
+}
+
+/*giam kich thuoc navi tren*/
+.navbar-nav > li > a {padding-top:5px !important; padding-bottom:5px !important;}
+.navbar {min-height:40px !important}
+.tnav .navbar .container { height: 28px; }

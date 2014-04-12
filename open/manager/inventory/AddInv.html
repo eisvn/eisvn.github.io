@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+    <form id="all">
+        <div id="localModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        hd
+                    </div>
+                </div>
+                <div class="modal-body">
+                    bd
+                </div>
+                <div class="modal-footer">
+                    ft
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal-dialog modal-sm modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="customModalHeader">Thêm kho mới</h4>
+                </div>
+                <div class="modal-body" style="height:480px; overflow: auto;">
+                    <!--tab-->
+                    <div>
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" id="myTab">
+                            <li class="active"><a href="#tabChung" data-toggle="tab">Chung</a></li>
+                            <li><a href="#hachToan" data-toggle="tab">Hạch toán</a></li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <!--tab thong tin tong quan-->
+                            <div class="tab-pane active" id="tabChung">
+                                <div class="row" role="form">
+                                    <div class="form-group col-md-2">
+                                        <label for="txtMaKho">Mã kho</label>
+                                        <input type="text" class="form-control input-sm" id="txtMaKho" placeholder="Nhập mã kho" data-toggle="tooltip" data-placement="top" title="Tooltip on top" />
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="txtMaVach">Mã vạch</label>
+                                        <input type="text" class="form-control input-sm" id="txtMaVach" placeholder="Nhập mã vạch" />
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="ddlTrangThaiKho">Trạng thái</label>
+                                        <select id="ddlTrangThaiKho" class="form-control input-sm">
+                                            <option>Khả dụng</option>
+                                            <option>Không khả dụng</option>
+                                        </select>
+                                        <!--<div class="input-group">-->
+                                            <!--<span class="input-group-btn">
+                                            <input type="text" class="form-control" id="txtTrangThaiKho" placeholder="Nhập TT">
+                                            <button class="btn btn-default"><i class="fa fa-search"></i></button>
+                                        </span>-->
+                                        <!--</div>--><!-- /input-group -->
+                         
+                                    </div>
+                                </div>
+                                <div class="row" role="form">
+                                    <div class="form-group col-md-4">
+                                        <label for="txtTenKho">Tên kho</label>
+                                        <input type="text" class="form-control input-sm" id="txtTenKho" placeholder="Nhập tên kho" />
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="txtTenTiengAnh">Tên 2</label>
+                                        <input type="text" class="form-control input-sm" id="txtTenTiengAnh" placeholder="Nhập tên tiếng Anh" />
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="ddlNhomKho">Nhóm kho</label>
+                                        <!--<input type="text" class="form-control input-sm" id="txtNhomKho" placeholder="Chọn hóm kho" />-->
+                                        <select id="ddlNhomKho" class="form-control input-sm"></select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--tab danh sach tai khoan hach toan tu dong-->
+                            <div class="tab-pane" id="hachToan">
+                                Danh sach tai khoan hach toan
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Quay lại</button>
+                    <button id="btnLuu" type="button" class="btn btn-primary" data-loading-text="Đang lưu...">Lưu</button>
+                </div>
+            </div>
+        </div>
+                    <script>
+                        $(document).ready(function () {
+                            $('#btnLuu').click(function () {
+                                var btn = $(this);
+                                btn.button('loading');
+                                $('#customModal2').modal('show');
+                                //call ajax
+                                //$('#btnLuu').button('reset');
+                            });
+                            //$(function () {
+                            //    $('#myTab a:last').tab('show');
+                            //});
+                        });
+                    </script>
+</form>
+</body>
+</html>

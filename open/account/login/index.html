@@ -1,0 +1,26 @@
+﻿<html>
+<head>
+    <title>
+        Đăng nhập
+    </title>
+    <link rel='stylesheet' href='css/style.css'/>
+    <script src="js/login.js"></script>
+</head>
+    <body>
+        <section class="wrap">
+            <div class="ipt">
+                <h1>Đăng nhập</h1>
+                <form method="GET" action="login.html">
+                    <div id="progress"><img id="imgProgress" src="progress.gif"></div>
+                    <p><input type="text" id="txtUserName" value="" placeholder="Nhập tên đăng nhập"></p>
+                    <p><input type="password" id="txtPassword" value="" placeholder="Nhập mật khẩu"></p>
+                    <p class="loginbtn"><button id="btnLogin" onclick="return login()">Đăng nhập</button></p>
+                    <p><label id="lblInfo"></label></p>
+                </form>
+            </div>
+            <div class="help">
+                <p>Nếu quên mật khẩu, <a href="#">nhấn vào đây để lấy lại</a></p>
+            </div>
+        </section>
+    </body>
+</html>

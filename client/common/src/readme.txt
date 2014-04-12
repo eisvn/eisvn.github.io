@@ -1,1 +1,0 @@
-This folder contain something which built by other author (open source)
