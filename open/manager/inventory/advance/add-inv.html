@@ -106,13 +106,16 @@
 
                 //display tab 'hach toan'
                 showWating();
+
+                var $container = $("#lstAccount");
                 var dt;
+                var handsontable = $container.data('handsontable');
                 $.ajax({
                     url: '/response/test.html',
                     type: 'GET',
                     dataType: "html",
                     success: function (results) {
-                        dt = results.responseText;
+                        handsontable.loadData(results.responseText);
                         hideWating();
                     },
                     error: function (a) {
@@ -123,7 +126,7 @@
                 });
                 hideWating();
 
-                var $container = $("#lstAccount");
+                
                 $container.handsontable({
                     data: dt,
                     startRows: 5,
