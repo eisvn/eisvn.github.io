@@ -105,12 +105,23 @@
                 });
 
                 //display tab 'hach toan'
-                var data = [
-                  ["", "Kia", "Nissan", "Toyota", "Honda"],
-                  ["2008", 10, 11, 12, 13],
-                  ["2009", 20, 11, 14, 13],
-                  ["2010", 30, 15, 12, 13]
-                ];
+                showWating();
+                var dt;
+                $.ajax({
+                    url: '/response/test.txt',
+                    type: 'GET',
+                    dataType: "json",
+                    success: function (results) {
+                        dt = results.d;
+                        hideWating();
+                    },
+                    error: function (a) {
+                        hideWating();
+                        displayAnAlert('alert-danger', 0, UNABLE_ACCESS);
+                        alert(a.responseText);
+                    }
+                });
+                hideWating();
 
                 var $container = $("#lstAccount");
                 $container.handsontable({
@@ -128,7 +139,7 @@
                     minSpareRows: 1
                 });
 
-                data[0][1] = "Ford"; //change "Kia" to "Ford" programatically
+                //data[0][1] = "Ford"; //change "Kia" to "Ford" programatically
                 $container.handsontable('render'); //refresh the grid to display the new value
             });
         </script>
