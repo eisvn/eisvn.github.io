@@ -111,11 +111,11 @@
                 var dt;
                 var handsontable = $container.data('handsontable');
                 $.ajax({
-                    url: '/response/test.html',
+                    url: '/response/test.json',
                     type: 'GET',
-                    dataType: "html",
+                    dataType: "json",
                     success: function (results) {
-                        handsontable.loadData(results.responseText);
+                        handsontable.loadData(results.d);
                         hideWating();
                     },
                     error: function (a) {
