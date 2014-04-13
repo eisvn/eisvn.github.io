@@ -99,7 +99,8 @@
                 $('#btnLuu').click(function () {
                     var btn = $(this);
                     btn.button('loading');
-                    $('#customModal2').modal('show');
+                    //$('#customModal2').modal('show');
+                    displayAnAlert('alert-info', 0, "Tạo kho thành công");
                     //call ajax
                     //$('#btnLuu').button('reset');
                 });

@@ -25,47 +25,20 @@ $(function() {
     });
 });
 
-$(document).ready(function () {
-    //load default page
-    showWating();
-    $('#contentPlaceHolder').load('/response/test.txt', '',
-        function (responseText, textStatus) {
-            if (textStatus == "error") {
-                displayAnAlert('alert-danger', 0, UNABLE_ACCESS);
-            }
-        });
-    hideWating();
-
-    //click to display popup modal
-    $('#btnThemKho').click(function () {
-        closeAllAlert();
-        $('#customModal').modal({
-            backdrop: 'static',
-            keyboard: false
-        });
-        loadModal(0, '../inventory/advance/add-inv.html');
-    }); //end button click event
-
-    //click btnBangTinh for testing
-    $('#btnBangTinh').click(function () {
-        closeAllAlert();
-        $('#customModal').modal({
-            backdrop: 'static',
-            keyboard: false
-        });
-        loadModal(0, 'handsontable.html');
-    }); //end button click event
-});
-
 //load any page as modal
 function loadModal(width, htmlPath) {
     showWating();
+    closeAllAlert();
+    $('#customModal').modal({
+        backdrop: 'static',
+        keyboard: false
+    });
+    $('#customModal').empty();
     $.ajax({
         url: htmlPath,
         type: 'GET',
         dataType: "html",
         success: function (results) {
-            $('#customModal').empty();
             $('#customModal').html($(results).filter('#all').html());
             hideWating();
             $('#customModal').modal('show');
@@ -73,7 +46,6 @@ function loadModal(width, htmlPath) {
         error: function (a) {
             hideWating();
             displayAnAlert('alert-danger', 0, UNABLE_ACCESS);
-            alert(a.responseText);
         }
     });
 }
@@ -96,11 +68,32 @@ function closeAllAlert() {
 
 //show wating
 function showWating() {
-    //$('#progressBar').show();
     $('#waitingNotify').show();
 }
 //hide wating
 function hideWating() {
-    //$('#progressBar').hide();
     $('#waitingNotify').hide();
 }
+
+
+$(document).ready(function () {
+    //load default page
+    showWating();
+    $('#contentPlaceHolder').load('/response/test.txt', '',
+        function (responseText, textStatus) {
+            if (textStatus == "error") {
+                displayAnAlert('alert-danger', 0, UNABLE_ACCESS);
+            }
+        });
+    hideWating();
+
+    //click to display popup modal
+    $('#btnThemKho').click(function () {
+        loadModal(0, '../inventory/advance/add-inv.html');
+    });
+
+    $('#lkNewInv').click(function () {
+        loadModal(0, '../inventory/advance/add-inv.html');
+    });
+});
+
