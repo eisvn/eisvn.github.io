@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
-<head></head>
+<head>
+</head>
 <body>
     <form id="all">
         <div id="localModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -54,12 +55,12 @@
                                             <option>Không khả dụng</option>
                                         </select>
                                         <!--<div class="input-group">-->
-                                            <!--<span class="input-group-btn">
+                                        <!--<span class="input-group-btn">
                                             <input type="text" class="form-control" id="txtTrangThaiKho" placeholder="Nhập TT">
                                             <button class="btn btn-default"><i class="fa fa-search"></i></button>
                                         </span>-->
                                         <!--</div>--><!-- /input-group -->
-                         
+
                                     </div>
                                 </div>
                                 <div class="row" role="form">
@@ -82,6 +83,7 @@
                             <!--tab danh sach tai khoan hach toan tu dong-->
                             <div class="tab-pane" id="hachToan">
                                 Danh sach tai khoan hach toan
+                                <div id="lstAccount"></div>
                             </div>
                         </div>
                     </div>
@@ -92,20 +94,44 @@
                 </div>
             </div>
         </div>
-                    <script>
-                        $(document).ready(function () {
-                            $('#btnLuu').click(function () {
-                                var btn = $(this);
-                                btn.button('loading');
-                                $('#customModal2').modal('show');
-                                //call ajax
-                                //$('#btnLuu').button('reset');
-                            });
-                            //$(function () {
-                            //    $('#myTab a:last').tab('show');
-                            //});
-                        });
-                    </script>
-</form>
+        <script>
+            $(document).ready(function () {
+                $('#btnLuu').click(function () {
+                    var btn = $(this);
+                    btn.button('loading');
+                    $('#customModal2').modal('show');
+                    //call ajax
+                    //$('#btnLuu').button('reset');
+                });
+
+                //display tab 'hach toan'
+                var data = [
+                  ["", "Kia", "Nissan", "Toyota", "Honda"],
+                  ["2008", 10, 11, 12, 13],
+                  ["2009", 20, 11, 14, 13],
+                  ["2010", 30, 15, 12, 13]
+                ];
+
+                var $container = $("#lstAccount");
+                $container.handsontable({
+                    data: data,
+                    startRows: 5,
+                    startCols: 10,
+                    colHeaders: true,
+                    rowHeaders: true,
+                    //columns: [
+                    //    { data: 1 },
+                    //    { data: 2 },
+                    //    { data: 3 },
+                    //    { data: 4 },
+                    //],
+                    minSpareRows: 1
+                });
+
+                data[0][1] = "Ford"; //change "Kia" to "Ford" programatically
+                $container.handsontable('render'); //refresh the grid to display the new value
+            });
+        </script>
+    </form>
 </body>
 </html>
