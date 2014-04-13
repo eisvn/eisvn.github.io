@@ -2,23 +2,10 @@
 var gAlertStartT= 200; //time fade in
 var gAlertCloseT = 400; //time fade out
 var gAlertDelayT = 10000; //time before auto close
-var UNABLE_ACCESS = 'Không thể tải trang'; //lỗi khi load html bằng ajax
-var UNABLE_SETCONTENT = 'Không thể nạp trang';
+var UNABLE_ACCESS = 'Không thể tải trang'; //unable load html by ajax
+var UNABLE_SETCONTENT = 'Không thể nạp trang'; //error load var (html) into div
 
-var myApp;
-myApp = myApp || (function () {
-	var pleaseWaitDiv = $('#pleaseWaitDialog');
-	return {
-		showPleaseWait: function () {
-			pleaseWaitDiv.modal();
-		},
-		hidePleaseWait: function () {
-			pleaseWaitDiv.modal('hide');
-		},
-
-	};
-})();
-
+//config menu
 $(function() {
 
     $('#side-menu').metisMenu();
@@ -39,9 +26,9 @@ $(function() {
 });
 
 $(document).ready(function () {
-    //nap thong tin trang mac dinh
+    //load default page
     showWating();
-    $('#contentPlaceHolder').load('Content1.html', '',
+    $('#contentPlaceHolder').load('/response/test.txt', '',
         function (responseText, textStatus) {
             if (textStatus == "error") {
                 displayAnAlert('alert-danger', 0, UNABLE_ACCESS);
@@ -49,13 +36,9 @@ $(document).ready(function () {
         });
     hideWating();
 
-    //thiet lap thuoc tinh modal
-
-
     //click to display popup modal
     $('#btnThemKho').click(function () {
         closeAllAlert();
-        showWating();
         $('#customModal').modal({
             backdrop: 'static',
             keyboard: false
@@ -63,9 +46,9 @@ $(document).ready(function () {
         loadModal(0, '../inventory/advance/add-inv.html');
     }); //end button click event
 
+    //click btnBangTinh for testing
     $('#btnBangTinh').click(function () {
         closeAllAlert();
-        showWating();
         $('#customModal').modal({
             backdrop: 'static',
             keyboard: false
@@ -73,8 +56,10 @@ $(document).ready(function () {
         loadModal(0, 'handsontable.html');
     }); //end button click event
 });
-//ham load trang web tu server va hien thi dang modal popup
+
+//load any page as modal
 function loadModal(width, htmlPath) {
+    showWating();
     $.ajax({
         url: htmlPath,
         type: 'GET',
@@ -82,45 +67,40 @@ function loadModal(width, htmlPath) {
         success: function (results) {
             $('#customModal').empty();
             $('#customModal').html($(results).filter('#all').html());
-            //$('#customModalFooter').html($(results).filter('#footer').html());
             hideWating();
             $('#customModal').modal('show');
         },
         error: function (a) {
             hideWating();
-            displayAnAlert('alert-danger', 0, UNABLE_ACCESS); //ko thể truy cập máy chủ
+            displayAnAlert('alert-danger', 0, UNABLE_ACCESS);
             alert(a.responseText);
         }
-    }); //end call ajax
+    });
 }
 
-//XU LY MAIN ALERT
-//Hien thi alert, type la alert-info, alert-warning, alert-danger hay alert-success
+//Display custom alert
+//type la alert-info, alert-warning, alert-danger or alert-success
 function displayAnAlert(type, isAutoClose, msg) {
     $('#alertContainer').empty();
     $('#alertContainer').append('<div class="alert ' + type + ' alert-dismissable">' +
         '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
         '<span>' + msg + '</span>' +
         '</div>');
-    //$('#alertContainer .alert .close').click(function () {
-    //    closeAllAlert();
-    //});
     $('#alertContainer').fadeIn(gAlertStartT);
 }
 
-//hide alert programming
+//hide alert on master
 function closeAllAlert() {
     $('#alertContainer').fadeOut(gAlertCloseT);
 }
 
-//PROGRESS BAR
-//display progress bar
+//show wating
 function showWating() {
-    //myApp.showPleaseWait();
     //$('#progressBar').show();
+    $('#waitingNotify').show();
 }
-//close progress bar
+//hide wating
 function hideWating() {
-    //myApp.hidePleaseWait();
     //$('#progressBar').hide();
+    $('#waitingNotify').hide();
 }
