@@ -4,6 +4,7 @@ var gAlertCloseT = 400; //time fade out
 var gAlertDelayT = 10000; //time before auto close
 var UNABLE_ACCESS = 'Không thể tải trang'; //unable load html by ajax
 var UNABLE_SETCONTENT = 'Không thể nạp trang'; //error load var (html) into div
+var HOSTNAME = 'localhost:29967';
 
 //config menu
 $(function() {
@@ -78,14 +79,14 @@ function hideWating() {
 
 $(document).ready(function () {
     //load default page
-    showWating();
-    $('#contentPlaceHolder').load('/response/test.txt', '',
-        function (responseText, textStatus) {
-            if (textStatus == "error") {
-                displayAnAlert('alert-danger', 0, UNABLE_ACCESS);
-            }
-        });
-    hideWating();
+    //showWating();
+    //$('#contentPlaceHolder').load('/response/test.txt', '',
+    //    function (responseText, textStatus) {
+    //        if (textStatus == "error") {
+    //            displayAnAlert('alert-danger', 0, UNABLE_ACCESS);
+    //        }
+    //    });
+    //hideWating();
 
     //click to display popup modal
     $('#btnThemKho').click(function () {

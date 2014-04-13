@@ -54,12 +54,6 @@
                                             <option>Khả dụng</option>
                                             <option>Không khả dụng</option>
                                         </select>
-                                        <!--<div class="input-group">-->
-                                        <!--<span class="input-group-btn">
-                                            <input type="text" class="form-control" id="txtTrangThaiKho" placeholder="Nhập TT">
-                                            <button class="btn btn-default"><i class="fa fa-search"></i></button>
-                                        </span>-->
-                                        <!--</div>--><!-- /input-group -->
 
                                     </div>
                                 </div>
@@ -74,7 +68,6 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="ddlNhomKho">Nhóm kho</label>
-                                        <!--<input type="text" class="form-control input-sm" id="txtNhomKho" placeholder="Chọn hóm kho" />-->
                                         <select id="ddlNhomKho" class="form-control input-sm"></select>
                                     </div>
                                 </div>
@@ -82,7 +75,7 @@
 
                             <!--tab danh sach tai khoan hach toan tu dong-->
                             <div class="tab-pane" id="hachToan">
-                                Danh sach tai khoan hach toan
+                                <p>Danh sách tài khoản</p>
                                 <div id="lstAccount"></div>
                             </div>
                         </div>
@@ -99,8 +92,7 @@
                 $('#btnLuu').click(function () {
                     var btn = $(this);
                     btn.button('loading');
-                    //$('#customModal2').modal('show');
-                    displayAnAlert('alert-info', 0, "Tạo kho thành công");
+                    displayAnAlert('alert-success', 0, "Tạo kho thành công");
                     //call ajax
                     //$('#btnLuu').button('reset');
                 });
@@ -108,24 +100,30 @@
                 //display tab 'hach toan'
                 showWating();
 
+                $('#lstAccount table').addClass('table');
+                $('#lstAccount table').addClass('table-striped');
+
                 var $container = $("#lstAccount");
                 $container.handsontable({
-                    data: dt,
-                    startRows: 5,
-                    startCols: 10,
-                    colHeaders: true,
-                    rowHeaders: true,
-                    //columns: [
-                    //    { data: 1 },
-                    //    { data: 2 },
-                    //    { data: 3 },
-                    //    { data: 4 },
-                    //],
-                    minSpareRows: 1
+                    startRows: 8,
+                    startCols: 6,
+                    colWidths: [350, 150],
+                    rowHeaders: false,
+                    colHeaders: ['Loại tài khoản', 'Tài khoản chỉ định'],
+                    columns: [
+                        {
+                            data: "Funtion",
+                            readOnly: true
+                        },
+                      {
+                          data: "AccountCode",
+                          type: 'dropdown',
+                          source: ["111", "112", "113", "156", "911"]
+                      }
+                    ],
+                    minSpareRows: 0
                 });
 
-                //data[0][1] = "Ford"; //change "Kia" to "Ford" programatically
-                //$container.handsontable('render'); //refresh the grid to display the new value
                 var handsontable = $container.data('handsontable');
                 $.ajax({
                     url: '/response/test.json',
@@ -138,13 +136,11 @@
                     error: function (a) {
                         hideWating();
                         displayAnAlert('alert-danger', 0, UNABLE_ACCESS);
-                        alert(a.responseText);
+                        hideWating();
                     }
                 });
-                hideWating();
-
+                //$container.handsontable('render');
                 
-               
             });
         </script>
     </form>
