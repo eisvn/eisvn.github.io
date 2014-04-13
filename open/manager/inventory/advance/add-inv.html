@@ -108,25 +108,6 @@
                 showWating();
 
                 var $container = $("#lstAccount");
-                var dt;
-                var handsontable = $container.data('handsontable');
-                $.ajax({
-                    url: '/response/test.json',
-                    type: 'GET',
-                    dataType: "json",
-                    success: function (results) {
-                        handsontable.loadData(results.d);
-                        hideWating();
-                    },
-                    error: function (a) {
-                        hideWating();
-                        displayAnAlert('alert-danger', 0, UNABLE_ACCESS);
-                        alert(a.responseText);
-                    }
-                });
-                hideWating();
-
-                
                 $container.handsontable({
                     data: dt,
                     startRows: 5,
@@ -143,7 +124,26 @@
                 });
 
                 //data[0][1] = "Ford"; //change "Kia" to "Ford" programatically
-                $container.handsontable('render'); //refresh the grid to display the new value
+                //$container.handsontable('render'); //refresh the grid to display the new value
+                var handsontable = $container.data('handsontable');
+                $.ajax({
+                    url: '/response/test.json',
+                    type: 'GET',
+                    dataType: "json",
+                    success: function (results) {
+                        handsontable.loadData(results.data);
+                        hideWating();
+                    },
+                    error: function (a) {
+                        hideWating();
+                        displayAnAlert('alert-danger', 0, UNABLE_ACCESS);
+                        alert(a.responseText);
+                    }
+                });
+                hideWating();
+
+                
+               
             });
         </script>
     </form>
