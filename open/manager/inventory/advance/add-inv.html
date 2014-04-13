@@ -108,9 +108,9 @@
                 showWating();
                 var dt;
                 $.ajax({
-                    url: '/response/test.txt',
+                    url: 'http://eisvn.github.io/response/test.html',
                     type: 'GET',
-                    dataType: "text",
+                    dataType: "html",
                     success: function (results) {
                         dt = results.responseText;
                         hideWating();
@@ -125,7 +125,7 @@
 
                 var $container = $("#lstAccount");
                 $container.handsontable({
-                    data: data,
+                    data: dt,
                     startRows: 5,
                     startCols: 10,
                     colHeaders: true,
