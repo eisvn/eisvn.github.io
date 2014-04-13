@@ -110,9 +110,9 @@
                 $.ajax({
                     url: '/response/test.txt',
                     type: 'GET',
-                    dataType: "json",
+                    dataType: "text",
                     success: function (results) {
-                        dt = results.d;
+                        dt = results.responseText;
                         hideWating();
                     },
                     error: function (a) {
