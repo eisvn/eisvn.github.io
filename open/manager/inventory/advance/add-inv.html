@@ -42,11 +42,11 @@
                                 <div class="row" role="form">
                                     <div class="form-group col-md-2">
                                         <label for="txtMaKho">Mã kho</label>
-                                        <input type="text" class="form-control input-sm" id="txtMaKho" placeholder="Nhập mã kho" data-toggle="tooltip" data-placement="top" title="Tooltip on top" />
+                                        <input type="text" class="form-control input-sm" id="txtMaKho" data-toggle="tooltip" data-placement="top" title="Tooltip on top" />
                                     </div>
                                     <div class="form-group col-md-2">
                                         <label for="txtMaVach">Mã vạch</label>
-                                        <input type="text" class="form-control input-sm" id="txtMaVach" placeholder="Nhập mã vạch" />
+                                        <input type="text" class="form-control input-sm" id="txtMaVach"/>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="ddlTrangThaiKho">Trạng thái</label>
@@ -60,11 +60,11 @@
                                 <div class="row" role="form">
                                     <div class="form-group col-md-4">
                                         <label for="txtTenKho">Tên kho</label>
-                                        <input type="text" class="form-control input-sm" id="txtTenKho" placeholder="Nhập tên kho" />
+                                        <input type="text" class="form-control input-sm" id="txtTenKho"/>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="txtTenTiengAnh">Tên 2</label>
-                                        <input type="text" class="form-control input-sm" id="txtTenTiengAnh" placeholder="Nhập tên tiếng Anh" />
+                                        <input type="text" class="form-control input-sm" id="txtTenTiengAnh"/>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="ddlNhomKho">Nhóm kho</label>
@@ -89,6 +89,7 @@
         </div>
         <script>
             $(document).ready(function () {
+                $('#txtMaKho').focus();
                 $('#btnLuu').click(function () {
                     var btn = $(this);
                     btn.button('loading');
@@ -100,47 +101,51 @@
                 //display tab 'hach toan'
                 showWating();
 
-                $('#lstAccount table').addClass('table');
-                $('#lstAccount table').addClass('table-striped');
-
+                //$('#lstAccount table').addClass('table');
+                //$('#lstAccount table').addClass('table-striped');
+                //var handsontable = $container.data('handsontable');
                 var $container = $("#lstAccount");
-                $container.handsontable({
-                    startRows: 8,
-                    startCols: 6,
-                    colWidths: [350, 150],
-                    rowHeaders: false,
-                    colHeaders: ['Loại tài khoản', 'Tài khoản chỉ định'],
-                    columns: [
-                        {
-                            data: "Funtion",
-                            readOnly: true
-                        },
-                      {
-                          data: "AccountCode",
-                          type: 'dropdown',
-                          source: ["111", "112", "113", "156", "911"]
-                      }
-                    ],
-                    minSpareRows: 0
-                });
+                var objectData = [
+                                  { Function: "Ted Right", AccountCode: "111" },
+                                  { Function: "Ted afsd", AccountCode: "112" },
+                                  { Function: "Ted Rieeeeeght", AccountCode: "9411" },
+                ];
 
-                var handsontable = $container.data('handsontable');
                 $.ajax({
-                    url: '/response/test.json',
+                    url: 'http://localhost:8733/Design_Time_Addresses/InventoryService/InventoryService/GetDefaultAccountList',
                     type: 'GET',
                     dataType: "json",
-                    success: function (results) {
-                        handsontable.loadData(results.data);
-                        hideWating();
+                    success: function (data) {
+                        $container.handsontable({
+                            data: data,
+                            startRows: 8,
+                            startCols: 6,
+                            minSpareRows: 0,
+                            colWidths: [350, 150],
+                            rowHeaders: false,
+                            colHeaders: ['Loại tài khoản', 'Tài khoản chỉ định'],
+                            columns:
+                                [{
+                                    data: "Function",
+                                    readOnly: true
+                                },
+                                {
+                                    data: "AccountCode",
+                                    type: 'dropdown',
+                                    source: ["111", "112", "113", "156", "911"]
+                                }]
+                        });
+
+                        $container.handsontable('render');
                     },
                     error: function (a) {
-                        hideWating();
                         displayAnAlert('alert-danger', 0, UNABLE_ACCESS);
+                        alert(JSON.stringify(a));
+                    },
+                    complete: function (a) {
                         hideWating();
                     }
                 });
-                //$container.handsontable('render');
-                
             });
         </script>
     </form>
