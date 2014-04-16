@@ -112,9 +112,10 @@
                 ];
 
                 $.ajax({
-                    url: 'http://localhost:8733/Design_Time_Addresses/InventoryService/InventoryService/GetDefaultAccountList',
+                    url: 'http://localhost:8733/InventoryService/GetDefaultAccountList',
                     type: 'GET',
                     dataType: "json",
+                    aSync: false,
                     success: function (data) {
                         $container.handsontable({
                             data: data,
