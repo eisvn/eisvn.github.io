@@ -105,17 +105,16 @@
                 //$('#lstAccount table').addClass('table-striped');
                 //var handsontable = $container.data('handsontable');
                 var $container = $("#lstAccount");
-                var objectData = [
-                                  { Function: "Ted Right", AccountCode: "111" },
-                                  { Function: "Ted afsd", AccountCode: "112" },
-                                  { Function: "Ted Rieeeeeght", AccountCode: "9411" },
-                ];
+                //var objectData = [
+                //                  { Function: "Ted Right", AccountCode: "111" },
+                //                  { Function: "Ted afsd", AccountCode: "112" },
+                //                  { Function: "Ted Rieeeeeght", AccountCode: "9411" },
+                //];
 
                 $.ajax({
                     url: 'http://localhost:8733/InventoryService/GetDefaultAccountList',
                     type: 'GET',
                     dataType: "json",
-                    aSync: false,
                     success: function (data) {
                         $container.handsontable({
                             data: data,
@@ -141,7 +140,6 @@
                     },
                     error: function (a) {
                         displayAnAlert('alert-danger', 0, UNABLE_ACCESS);
-                        alert(JSON.stringify(a));
                     },
                     complete: function (a) {
                         hideWating();
