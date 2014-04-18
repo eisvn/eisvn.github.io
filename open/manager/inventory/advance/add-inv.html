@@ -32,7 +32,7 @@
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" id="myTab">
                             <li class="active"><a href="#tabChung" data-toggle="tab">Chung</a></li>
-                            <li><a href="#hachToan" data-toggle="tab">Hạch toán</a></li>
+                            <li><a href="#hachToan" data-toggle="tab">Tài khoản</a></li>
                         </ul>
 
                         <!-- Tab panes -->
@@ -54,7 +54,13 @@
                                             <option>Khả dụng</option>
                                             <option>Không khả dụng</option>
                                         </select>
-
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input id="chb01KhoMacDinh" type="checkbox"> Là kho mặc định
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row" role="form">
@@ -69,6 +75,15 @@
                                     <div class="form-group col-md-4">
                                         <label for="ddlNhomKho">Nhóm kho</label>
                                         <select id="ddlNhomKho" class="form-control input-sm"></select>
+                                    </div>
+                                </div>
+                                <div class="row" role="form">
+                                    <div class="form-group col-md-4">
+                                        <label for="ddl01KieuXuatHang">Kiểu xuất hàng</label>
+                                        <select id="ddl01KieuXuatHang" class="form-control input-sm">
+                                            <option>Ưu tiên xuất từ vị trí có tồn lớn nhất</option>
+                                            <option>Ưu tiên xuất từ vị trí có tồn nhỏ nhất</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -96,6 +111,7 @@
                     displayAnAlert('alert-success', 0, "Tạo kho thành công");
                     //call ajax
                     //$('#btnLuu').button('reset');
+                    $('#customModal').modal('hide');
                 });
 
                 //display tab 'hach toan'

@@ -8,9 +8,7 @@ var HOSTNAME = 'localhost:29967';
 
 //config menu
 $(function() {
-
     $('#side-menu').metisMenu();
-
 });
 
 //Loads the correct sidebar on window load,
@@ -90,11 +88,11 @@ $(document).ready(function () {
 
     //click to display popup modal
     $('#btnThemKho').click(function () {
-        loadModal(0, '../inventory/advance/add-inv.html');
+        loadModal(0, '/open/manager/inventory/advance/add-inv.html');
     });
 
     $('#lkNewInv').click(function () {
-        loadModal(0, '../inventory/advance/add-inv.html');
+        loadModal(0, '/open/manager/inventory/advance/add-inv.html');
     });
 });
 
