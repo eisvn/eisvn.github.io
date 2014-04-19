@@ -20,7 +20,6 @@
             </div>
         </div>
 
-
         <div class="modal-dialog modal-sm modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
@@ -121,11 +120,11 @@
                 //$('#lstAccount table').addClass('table-striped');
                 //var handsontable = $container.data('handsontable');
                 var $container = $("#lstAccount");
-                //var objectData = [
-                //                  { Function: "Ted Right", AccountCode: "111" },
-                //                  { Function: "Ted afsd", AccountCode: "112" },
-                //                  { Function: "Ted Rieeeeeght", AccountCode: "9411" },
-                //];
+                var objectData = [
+                                  { Function: "Ted Right", AccountCode: "111" },
+                                  { Function: "Ted afsd", AccountCode: "112" },
+                                  { Function: "Ted Rieeeeeght", AccountCode: "9411" },
+                ];
 
                 $.ajax({
                     url: 'http://localhost:8733/InventoryService/GetDefaultAccountList',
@@ -161,6 +160,28 @@
                         hideWating();
                     }
                 });
+
+                $container.handsontable({
+                    data: objectData,
+                    startRows: 8,
+                    startCols: 6,
+                    minSpareRows: 0,
+                    colWidths: [350, 150],
+                    rowHeaders: false,
+                    colHeaders: ['Loại tài khoản', 'Tài khoản chỉ định'],
+                    columns:
+                        [{
+                            data: "Function",
+                            readOnly: true
+                        },
+                        {
+                            data: "AccountCode",
+                            type: 'dropdown',
+                            source: ["111", "112", "113", "156", "911"]
+                        }]
+                });
+
+                $container.handsontable('render');
             });
         </script>
     </form>
