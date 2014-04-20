@@ -87,10 +87,12 @@ $(document).ready(function () {
     //hideWating();
 
     //click to display popup modal
-    $('#btnThemKho').click(function () {
-        loadModal(0, '/open/manager/inventory/advance/add-inv.html');
+    //tao vi tri
+    $('#lkNewLoc').click(function () {
+        loadModal(0, '/open/manager/inventory/advance/add-loc.html');
     });
 
+    //tao kho
     $('#lkNewInv').click(function () {
         loadModal(0, '/open/manager/inventory/advance/add-inv.html');
     });

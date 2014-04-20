@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>02</title>
+</head>
+<body>
+    <form id="all">
+        <div id="localModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        hd
+                    </div>
+                </div>
+                <div class="modal-body">
+                    bd
+                </div>
+                <div class="modal-footer">
+                    ft
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-dialog modal-sm modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="customModalHeader">Thêm vị trí cất trữ mới</h4>
+                </div>
+                <div class="modal-body" style="height:480px; overflow: auto;">
+                    <div>
+                        <!--Panel 1-->
+                        <div class="panel panel-success">
+                            <div class="panel-heading">Thông tin chung</div>
+                            <div class="panel-body">
+                                <div class="row" role="form">
+                                    <div class="form-group col-md-2">
+                                        <label for="txt02MaKho">Mã kho</label>
+                                        <input type="text" class="form-control input-sm" id="txt02MaKho" data-toggle="tooltip" data-placement="top" title="Tooltip on top" />
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="txt02MaTang">Mã tầng</label>
+                                        <input type="text" class="form-control input-sm" id="txt02MaTang" />
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="txt02MaPhong">Mã phòng</label>
+                                        <input type="text" class="form-control input-sm" id="txt02MaPhong" />
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="txt02MaCabin">Mã cabin</label>
+                                        <input type="text" class="form-control input-sm" id="txt02MaCabin" />
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="txt02MaO">Mã ô</label>
+                                        <input type="text" class="form-control input-sm" id="txt02MaO" />
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="ddl02TrangThaiViTri">Trạng thái</label>
+                                        <select id="ddl02TrangThaiViTri" class="form-control input-sm">
+                                            <option>Sử dụng</option>
+                                            <option>Không sử dụng</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row" role="form">
+                                    <div class="form-group col-md-3">
+                                        <label for="txt02MaViTri">Mã vị trí</label>
+                                        <input type="text" class="form-control input-sm" id="txt02MaViTri" />
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="txt02MaVach">Mã vạch</label>
+                                        <input type="text" class="form-control input-sm" id="txt02MaVach" />
+                                    </div>
+                                    <div class="form-group col-md-7">
+                                        <label for="txt02DienGiai">Mô tả</label>
+                                        <input type="text" class="form-control input-sm" id="txt02DienGiai" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--panel 2-->
+                        <div class="panel panel-success">
+                            <div class="panel-heading">Ràng buộc</div>
+                            <div class="panel-body">
+                                <div class="row" role="form">
+                                    <div class="form-group col-md-2">
+                                        <label for="txt02SoLuongToiThieu">SL tối thiểu</label>
+                                        <input type="text" class="form-control input-sm" id="txt02SoLuongToiThieu" />
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="txt02SoLuongToiDa">SL tối đa</label>
+                                        <input type="text" class="form-control input-sm" id="txt02SoLuongToiDa" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Quay lại</button>
+                    <button id="btn02Luu" type="button" class="btn btn-primary" data-loading-text="Đang lưu...">Lưu</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            $(document).ready(function () {
+                $('#txt02MaKho').focus();
+                $('#btn02Luu').click(function () {
+                    var btn = $(this);
+                    btn.button('loading');
+                    displayAnAlert('alert-success', 0, "Tạo vị trí mới thành công");
+                    //call ajax
+                    //$('#btnLuu').button('reset');
+                    $('#customModal').modal('hide');
+                });
+            });
+        </script>
+    </form>
+</body>
+</html>
